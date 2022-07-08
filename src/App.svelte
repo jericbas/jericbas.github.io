@@ -1,6 +1,6 @@
 <script lang="ts">
-  import logo from "./assets/svelte.png";
-  import Counter from "./lib/Counter.svelte";
+  import logo from './assets/svelte.png';
+  import Counter from './lib/Counter.svelte';
 </script>
 
 <main class="text-center">
@@ -21,10 +21,10 @@
 </main>
 
 <style>
-    a {
-        @apply text-blue-700;
-    }
-    a:hover {
-        @apply underline;
-    }
+  a {
+    @apply text-blue-700;
+  }
+  a:hover {
+    @apply underline;
+  }
 </style>
