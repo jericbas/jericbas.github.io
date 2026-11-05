@@ -13,14 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devEngines": {
-    "packageManager": {
-      "name": "pnpm",
-      "version": "12.16.1",
-      "onFail": "download"
-    }
-  },
-  "packageManager": "pnpm@12.16.1",
+  "packageManager": "bun@1.4.3",
   "type": "module",
   "dependencies": {
     "@astrojs/mdx": "^8.1.2",

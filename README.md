@@ -41,23 +41,23 @@
 
 ## 🚀 Quickstart & Local Development
 
-Make sure you have Node 20+ and `pnpm` installed:
+Make sure you have [Bun](https://bun.sh) installed:
 
 ```bash
 # Clone or navigate to the directory
 cd projects/jericbas.github.io
 
 # Install dependencies
-pnpm install
+bun install
 
 # Start local dev server (includes live preview of drafts)
-pnpm dev
+bun run dev
 
 # Build production static site (drafts are excluded)
-pnpm build
+bun run build
 
 # Preview production build locally
-pnpm preview
+bun run preview
 ```
 
 ---

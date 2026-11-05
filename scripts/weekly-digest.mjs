@@ -109,7 +109,7 @@ ${activityMarkdown}
 ### ✍️ Writing Prompts to Spark an Article
 1. **The Core Obstacle**: What unexpected edge case or build error consumed the most time this week?
 2. **Architecture Choice**: Did you pick a specific Rust pattern, npm strategy, or Vite hook? Why?
-3. **Drafting a Post**: You can add a new markdown file in \`src/content/blog/\` on your \`jericbas.github.io\` repo and test it locally anytime with \`pnpm dev\`! (Use \`draft: true\` if you want to save thoughts privately without publishing yet).
+3. **Drafting a Post**: You can add a new markdown file in \`src/content/blog/\` on your \`jericbas.github.io\` repo and test it locally anytime with \`bun run dev\`! (Use \`draft: true\` if you want to save thoughts privately without publishing yet).
 
 *This reminder runs automatically every week. Only 1 reminder issue stays open at any time.*`;
 

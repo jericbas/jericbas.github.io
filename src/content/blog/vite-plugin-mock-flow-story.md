@@ -1,12 +1,16 @@
 ---
-title: "Why I Built vite-plugin-mock-flow: Eliminating Friction in Local API Mocking"
-description: "How a frustration with heavyweight mock servers led to creating an in-memory, flow-based mock plugin for Vite."
+title: "Building vite-plugin-mock-flow: Eliminating Friction in Local API Mocking (WIP)"
+description: "Architecture notes and lessons while actively developing an in-memory, flow-based mock plugin for Vite."
 pubDate: 2026-10-25
-tags: ["npm", "vite", "typescript", "frontend"]
+tags: ["npm", "vite", "typescript", "wip"]
 draft: false
 featured: true
 author: "Jeric Bas"
 ---
+
+> [!NOTE]
+> **Project Status: Under Active Construction 🚧**
+> `vite-plugin-mock-flow` is currently in active development. This post captures the design motivations, architecture considerations, and early iterations.
 
 Every frontend developer knows the dreaded blocker: you need to build a complex multi-step UI flow (like an checkout funnel, authentication handshake, or multipart file upload), but the backend staging endpoints are either incomplete, unstable, or rate-limited.
 
@@ -23,4 +27,5 @@ Key architectural goals:
 - **Stateful Sequences**: Simulates realistic progression (e.g. initial `202 Accepted` followed by `200 Ready`).
 - **Zero Bundle Leakage**: Excluded completely from production builds.
 
-Published on the npm registry, it serves as a lightweight alternative for teams wanting rapid prototyping without mock server overhead.
+### Current Progress
+The plugin core is currently being engineered and dogfooded in local Vite projects. Stay tuned for release notes and benchmarks once the initial v0.1.0 tag is published!

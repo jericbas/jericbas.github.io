@@ -10,18 +10,19 @@ export interface ProjectItem {
   githubUrl: string;
   npmUrl?: string;
   featured?: boolean;
+  status?: string;
 }
 
 export const PROJECTS: ProjectItem[] = [
   {
     title: 'vite-plugin-mock-flow',
     category: 'npm',
-    tagline: 'Zero-overhead API flow mocking for Vite apps',
+    tagline: 'Zero-overhead API flow mocking for Vite apps (In Active Development)',
     description:
       'A streamlined Vite dev plugin providing realistic, reproducible mock request flows directly within the local developer environment without running external mock servers.',
     tech: ['TypeScript', 'Vite', 'npm', 'ESM'],
     githubUrl: 'https://github.com/jericbas/vite-plugin-mock-flow',
-    npmUrl: 'https://www.npmjs.com/package/vite-plugin-mock-flow',
+    status: 'Under Construction',
     featured: true,
   },
   {
@@ -119,6 +120,11 @@ export default function ProjectGrid({ filter = 'all' }: ProjectGridProps) {
                 {project.featured && (
                   <span className="text-[10px] font-mono uppercase tracking-wider text-muted-theme">
                     ★ Featured
+                  </span>
+                )}
+                {project.status && (
+                  <span className="inline-flex items-center gap-1 text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30">
+                    🚧 {project.status}
                   </span>
                 )}
               </div>
