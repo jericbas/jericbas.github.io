@@ -1,144 +1,127 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProjectGrid from '../components/ProjectGrid';
-import { getCollection } from 'astro:content';
-import { ArrowRight, BookOpen, Code2, Terminal, Sparkles, Calendar } from 'lucide-react';
-
-// Fetch public, non-draft blog posts sorted by date
-const allPosts = await getCollection('blog', ({ data }) => {
-  return import.meta.env.PROD ? data.draft !== true : true;
-});
-
-const recentPosts = allPosts
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+import { Terminal, Sparkles, Cpu, Package, BookOpen, Clock } from 'lucide-react';
+import GithubIcon from '../components/icons/GithubIcon';
 ---
 
-<Layout>
-  <!-- Hero Section -->
-  <section class="py-6 sm:py-10 border-b border-theme/60">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-theme bg-surface-elevated text-xs font-mono text-secondary-theme mb-6">
-      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-      <span>Living Developer Journey & Portfolio</span>
-      <span class="text-muted-theme">•</span>
-      <span class="accent-text font-semibold">✨ Live &amp; Open Source</span>
+<Layout
+  title="Jeric Bas | Work in Progress 🚧"
+  description="Personal developer space and living devlog by Jeric Bas. Currently under construction."
+>
+  <div class="py-10 sm:py-16 max-w-3xl mx-auto flex flex-col items-center text-center">
+    <!-- Work in Progress Badge -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-xs font-mono text-amber-500 mb-8 shadow-xs">
+      <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+      <span class="font-semibold tracking-wide">🚧 WORK IN PROGRESS</span>
+      <span class="text-amber-500/50">•</span>
+      <span>Actively Crafting</span>
     </div>
 
-    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-primary-theme leading-tight max-w-3xl">
-      Engineering at the seam of <span class="accent-text">Rust</span> systems and modern <span class="accent-text">TypeScript</span> tooling.
+    <!-- Main Title -->
+    <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-primary-theme leading-tight mb-6">
+      Building a living devlog &amp; <span class="accent-text">systems portfolio</span>.
     </h1>
 
-    <p class="text-base sm:text-lg text-secondary-theme mt-5 max-w-2xl leading-relaxed">
-      Hi, I'm <strong>Jeric Bas</strong>. I build open-source npm packages, fast CLI diagnostics, and reliable backend systems. This site is my live journal documenting architectural decisions, milestones, and lessons learned.
+    <!-- Subtitle -->
+    <p class="text-base sm:text-lg text-secondary-theme max-w-2xl leading-relaxed mb-10">
+      Hi, I'm <strong>Jeric Bas</strong>. I build open-source tools, npm packages, and systems software in Rust &amp; TypeScript. This portfolio and live devlog is currently being shaped.
     </p>
 
-    <!-- Call to Actions -->
-    <div class="flex flex-wrap items-center gap-3 mt-8">
-      <a
-        href="/blog"
-        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm text-white accent-bg hover:opacity-90 transition-opacity shadow-sm"
-      >
-        <BookOpen className="w-4 h-4" />
-        Read the Devlog
-        <ArrowRight className="w-4 h-4" />
-      </a>
-
-      <a
-        href="/projects"
-        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm border border-theme bg-surface hover:bg-surface-elevated text-primary-theme transition-colors shadow-xs"
-      >
-        <Code2 className="w-4 h-4 text-secondary-theme" />
-        Explore Projects
-      </a>
-
-      <a
-        href="https://github.com/jericbas"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm text-secondary-theme hover:text-primary-theme transition-colors"
-      >
-        GitHub Profile ↗
-      </a>
-    </div>
-  </section>
-
-  <!-- Rust & npm Projects Showcase -->
-  <section class="py-12 border-b border-theme/60">
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
-      <div>
-        <div class="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-theme mb-1">
-          <Terminal className="w-3.5 h-3.5 accent-text" />
-          Open Source Craft
+    <!-- Theme Feature Highlight Box -->
+    <div class="w-full p-6 sm:p-8 rounded-3xl border border-theme bg-surface seasonal-glow text-left mb-12 relative overflow-hidden">
+      <div class="flex items-center gap-2.5 mb-3">
+        <div class="w-8 h-8 rounded-xl bg-surface-elevated border border-theme flex items-center justify-center">
+          <Sparkles className="w-4 h-4 accent-text" />
         </div>
-        <h2 class="text-2xl font-bold text-primary-theme">Featured Rust & npm Projects</h2>
-      </div>
-      <a
-        href="/projects"
-        class="text-xs font-medium accent-text hover:underline inline-flex items-center gap-1"
-      >
-        View all projects & crates →
-      </a>
-    </div>
-
-    <ProjectGrid client:load filter="featured" />
-  </section>
-
-  <!-- Latest Blog & Devlog Entries -->
-  <section class="py-12">
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
-      <div>
-        <div class="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-theme mb-1">
-          <Sparkles className="w-3.5 h-3.5 accent-text" />
-          Recent Writing & Milestones
-        </div>
-        <h2 class="text-2xl font-bold text-primary-theme">Latest Devlog Posts</h2>
-      </div>
-      <a
-        href="/blog"
-        class="text-xs font-medium accent-text hover:underline inline-flex items-center gap-1"
-      >
-        View full archive ({allPosts.length} posts) →
-      </a>
-    </div>
-
-    <div class="space-y-4">
-      {recentPosts.map((post) => (
-        <a
-          href={`/blog/${post.id}`}
-          class="block p-5 rounded-2xl border border-theme bg-surface seasonal-card-hover group"
-        >
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-            <h3 class="text-lg font-bold text-primary-theme group-hover:accent-text transition-colors">
-              {post.data.title}
-            </h3>
-            <div class="flex items-center gap-1.5 text-xs text-muted-theme font-mono shrink-0">
-              <Calendar className="w-3.5 h-3.5" />
-              {post.data.pubDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-              })}
-            </div>
-          </div>
-
-          <p class="text-sm text-secondary-theme mb-3 leading-relaxed">
-            {post.data.description}
+        <div>
+          <h2 class="text-base font-bold text-primary-theme">
+            Live Preview: Philippine Seasonal Theme Engine ✨
+          </h2>
+          <p class="text-xs text-muted-theme">
+            Interactive theme system is live and fully functional.
           </p>
+        </div>
+      </div>
 
-          <div class="flex items-center gap-2">
-            {post.data.tags.map((tag: string) => (
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded-md bg-surface-elevated text-secondary-theme">
-                #{tag}
-              </span>
-            ))}
-            {post.data.draft && (
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">
-                Draft (Preview)
-              </span>
-            )}
-          </div>
-        </a>
-      ))}
+      <p class="text-xs sm:text-sm text-secondary-theme leading-relaxed mb-4">
+        Try switching appearances using the controls in the navbar above:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div class="p-3 rounded-xl bg-surface-elevated border border-theme">
+          <div class="font-semibold text-primary-theme mb-1">☀️ Light Mode</div>
+          <div class="text-muted-theme text-[11px]">Crisp paper daylight interface for clear readability.</div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-surface-elevated border border-theme">
+          <div class="font-semibold text-primary-theme mb-1">🌒 Dim (Twilight)</div>
+          <div class="text-muted-theme text-[11px]">Soft charcoal &amp; slate navy — easy on the eyes.</div>
+        </div>
+
+        <div class="p-3 rounded-xl bg-surface-elevated border border-theme">
+          <div class="font-semibold text-primary-theme mb-1">🌑 Dark Mode</div>
+          <div class="text-muted-theme text-[11px]">Pitch obsidian high-contrast night aesthetic.</div>
+        </div>
+      </div>
+
+      <div class="mt-4 pt-3 border-t border-theme/60 text-xs text-secondary-theme flex items-center gap-2">
+        <span class="text-sm">🌟</span>
+        <span>
+          <strong>Seasonal Engine:</strong> Test all 12 Philippine seasonal moods from the dropdown picker above!
+        </span>
+      </div>
     </div>
-  </section>
+
+    <!-- What's Coming Section -->
+    <div class="w-full text-left mb-10">
+      <div class="text-xs font-mono uppercase tracking-wider text-muted-theme mb-4 flex items-center gap-1.5">
+        <Clock className="w-3.5 h-3.5 accent-text" />
+        What's in the works
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="p-4 rounded-2xl border border-theme bg-surface">
+          <div class="w-7 h-7 rounded-lg bg-orange-500/10 text-orange-500 border border-orange-500/20 flex items-center justify-center mb-3">
+            <Cpu className="w-4 h-4" />
+          </div>
+          <h3 class="text-sm font-bold text-primary-theme mb-1">Rust Systems</h3>
+          <p class="text-xs text-muted-theme leading-relaxed">
+            Fast, memory-safe CLI tools and Linux security monitors like oxitty and ufw-guard.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl border border-theme bg-surface">
+          <div class="w-7 h-7 rounded-lg bg-red-500/10 text-red-500 border border-red-500/20 flex items-center justify-center mb-3">
+            <Package className="w-4 h-4" />
+          </div>
+          <h3 class="text-sm font-bold text-primary-theme mb-1">npm Tooling</h3>
+          <p class="text-xs text-muted-theme leading-relaxed">
+            Developer diagnostics and AST codemods like why-override and zod-v3-to-v4.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl border border-theme bg-surface">
+          <div class="w-7 h-7 rounded-lg bg-blue-500/10 text-blue-500 border border-blue-500/20 flex items-center justify-center mb-3">
+            <BookOpen className="w-4 h-4" />
+          </div>
+          <h3 class="text-sm font-bold text-primary-theme mb-1">Living Devlog</h3>
+          <p class="text-xs text-muted-theme leading-relaxed">
+            Unfiltered engineering journal on architecture hurdles and milestones.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- GitHub CTA -->
+    <a
+      href="https://github.com/jericbas"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl font-semibold text-sm border border-theme bg-surface hover:bg-surface-elevated text-primary-theme transition-all shadow-xs seasonal-card-hover"
+    >
+      <GithubIcon className="w-4 h-4" />
+      <span>Follow updates on GitHub @jericbas</span>
+      <span>→</span>
+    </a>
+  </div>
 </Layout>
