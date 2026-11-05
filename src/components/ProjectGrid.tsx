@@ -17,13 +17,13 @@ export const PROJECTS: ProjectItem[] = [
   {
     title: 'vite-plugin-mock-flow',
     category: 'npm',
-    tagline: 'Zero-overhead API flow mocking for Vite apps (In Active Development)',
+    tagline: 'Developer Tooling Experiment (Coming Soon)',
     description:
-      'A streamlined Vite dev plugin providing realistic, reproducible mock request flows directly within the local developer environment without running external mock servers.',
-    tech: ['TypeScript', 'Vite', 'npm', 'ESM'],
-    githubUrl: 'https://github.com/jericbas/vite-plugin-mock-flow',
+      'An upcoming developer utility currently in private research and active construction. Design details are preserved privately.',
+    tech: ['TypeScript', 'Vite', 'DevTools'],
+    githubUrl: 'https://github.com/jericbas',
     status: 'Under Construction',
-    featured: true,
+    featured: false,
   },
   {
     title: 'why-override',
