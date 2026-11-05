@@ -13,7 +13,7 @@ As software engineers, we often get pushed toward extremes: either write everyth
 Over the past year building developer tooling, npm packages, and systems utilities, I have found that the sweetest engineering spot lies directly at the seam between **TypeScript** and **Rust**.
 
 ### Why TypeScript for Developer Experience
-When building packages like [`vite-plugin-mock-flow`](https://github.com/jericbas/vite-plugin-mock-flow) or [`why-override`](https://github.com/jericbas/why-override), developer adoption hinges on frictionless integration. Node.js and TypeScript offer:
+When building packages like [`why-override`](https://github.com/jericbas/why-override) or [`zod-v3-to-v4`](https://github.com/jericbas/zod-v3-to-v4), developer adoption hinges on frictionless integration. Node.js and TypeScript offer:
 - Instant plug-and-play with existing web toolchains (Vite, Rollup, Next.js).
 - Rich AST tooling (such as `ts-morph` and compiler APIs) for schema codemods.
 - Zero friction distribution via the npm registry.

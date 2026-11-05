@@ -15,17 +15,6 @@ export interface ProjectItem {
 
 export const PROJECTS: ProjectItem[] = [
   {
-    title: 'vite-plugin-mock-flow',
-    category: 'npm',
-    tagline: 'Developer Tooling Experiment (Coming Soon)',
-    description:
-      'An upcoming developer utility currently in private research and active construction. Design details are preserved privately.',
-    tech: ['TypeScript', 'Vite', 'DevTools'],
-    githubUrl: 'https://github.com/jericbas',
-    status: 'Under Construction',
-    featured: false,
-  },
-  {
     title: 'why-override',
     category: 'npm',
     tagline: 'CLI dependency tree inspector for npm overrides',
@@ -45,7 +34,7 @@ export const PROJECTS: ProjectItem[] = [
     tech: ['TypeScript', 'AST', 'Codemod', 'npm'],
     githubUrl: 'https://github.com/jericbas/zod-v3-to-v4',
     npmUrl: 'https://www.npmjs.com/package/zod-v3-to-v4',
-    featured: false,
+    featured: true,
   },
   {
     title: 'oxitty',
