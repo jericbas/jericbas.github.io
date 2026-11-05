@@ -1,0 +1,99 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true;
+  });
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout
+  title={`${post.data.title} | Jeric Bas`}
+  description={post.data.description}
+>
+  <article class="max-w-3xl mx-auto">
+    <!-- Back link -->
+    <a
+      href="/blog"
+      class="inline-flex items-center gap-1.5 text-xs text-secondary-theme hover:text-primary-theme transition-colors mb-6"
+    >
+      <ArrowLeft className="w-3.5 h-3.5" />
+      Back to all posts
+    </a>
+
+    <!-- Header -->
+    <header class="mb-10 pb-8 border-b border-theme">
+      {post.data.draft && (
+        <div class="inline-block mb-3 px-3 py-1 rounded-full text-xs font-mono bg-amber-500/10 text-amber-500 border border-amber-500/20">
+          ⚠️ Work in Progress (Draft)
+        </div>
+      )}
+
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-primary-theme leading-tight tracking-tight mb-4">
+        {post.data.title}
+      </h1>
+
+      <p class="text-base sm:text-lg text-secondary-theme leading-relaxed mb-6">
+        {post.data.description}
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 text-xs text-muted-theme font-mono">
+        <div class="flex items-center gap-1.5">
+          <Calendar className="w-3.5 h-3.5" />
+          <span>
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </span>
+        </div>
+
+        <span>•</span>
+
+        <div class="flex items-center gap-1.5">
+          <span>By {post.data.author}</span>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="flex flex-wrap gap-2 mt-4">
+        {post.data.tags.map((tag: string) => (
+          <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-surface-elevated text-secondary-theme">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <div class="prose prose-invert max-w-none text-secondary-theme space-y-6 leading-relaxed">
+      <Content />
+    </div>
+
+    <!-- Article Footer -->
+    <div class="mt-16 pt-8 border-t border-theme flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-theme">
+      <div>
+        Published by <strong>Jeric Bas</strong> on his living engineering journal.
+      </div>
+      <a
+        href="https://github.com/jericbas"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="accent-text hover:underline"
+      >
+        Follow updates on GitHub →
+      </a>
+    </div>
+  </article>
+</Layout>

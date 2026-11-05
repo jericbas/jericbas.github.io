@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-page: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-surface-elevated: #f1f5f9;
+    --border-color: #e2e8f0;
+    --border-hover: #cbd5e1;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    
+    /* Seasonal accent tokens (default fallback) */
+    --accent-primary: #dc2626;
+    --accent-secondary: #16a34a;
+    --accent-glow: rgba(220, 38, 38, 0.15);
+    --accent-gold: #f59e0b;
+    --accent-border: #fca5a5;
+  }
+
+  /* Mode 2: Dim (Twilight / Light-Dark - softer slate/charcoal between light and pitch black) */
+  html[data-mode="dim"] {
+    --bg-page: #151b23;
+    --bg-surface: #1f242c;
+    --bg-surface-elevated: #282e38;
+    --border-color: #333b47;
+    --border-hover: #485263;
+    --text-primary: #f0f6fc;
+    --text-secondary: #9aa7b6;
+    --text-muted: #6e7681;
+    --accent-glow: rgba(245, 158, 11, 0.2);
+  }
+
+  /* Mode 3: Dark (Deep Obsidian / Pitch Black) */
+  html[data-mode="dark"] {
+    --bg-page: #000000;
+    --bg-surface: #0a0a0a;
+    --bg-surface-elevated: #141414;
+    --border-color: #222222;
+    --border-hover: #333333;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1aa;
+    --text-muted: #52525b;
+    --accent-glow: rgba(245, 158, 11, 0.25);
+  }
+
+  /* 12 Philippine Seasonal Themes */
+  /* Month 1: Bagong Taon (Clean Slate & Frost Cyan) */
+  html[data-season="bagong-taon"] {
+    --accent-primary: #0284c7;
+    --accent-secondary: #06b6d4;
+    --accent-gold: #38bdf8;
+    --accent-border: #7dd3fc;
+    --accent-glow: rgba(2, 132, 199, 0.2);
+  }
+
+  /* Month 2: Harana / Valentine (Rose Quartz & Velvet Crimson) */
+  html[data-season="harana"] {
+    --accent-primary: #e11d48;
+    --accent-secondary: #f43f5e;
+    --accent-gold: #fda4af;
+    --accent-border: #f43f5e;
+    --accent-glow: rgba(225, 29, 72, 0.2);
+  }
+
+  /* Month 3: Tag-araw (Summer Sunbeam & Warm Amber) */
+  html[data-season="tag-araw"] {
+    --accent-primary: #d97706;
+    --accent-secondary: #f59e0b;
+    --accent-gold: #fbbf24;
+    --accent-border: #fde68a;
+    --accent-glow: rgba(217, 119, 6, 0.2);
+  }
+
+  /* Month 4: Horizon (Linen Sage & Sand) */
+  html[data-season="horizon"] {
+    --accent-primary: #059669;
+    --accent-secondary: #10b981;
+    --accent-gold: #d97706;
+    --accent-border: #6ee7b7;
+    --accent-glow: rgba(5, 150, 105, 0.2);
+  }
+
+  /* Month 5: Flores de Mayo (Festive Botanical Fuchsia & Emerald) */
+  html[data-season="flores-de-mayo"] {
+    --accent-primary: #c026d3;
+    --accent-secondary: #10b981;
+    --accent-gold: #facc15;
+    --accent-border: #e879f9;
+    --accent-glow: rgba(192, 38, 211, 0.2);
+  }
+
+  /* Month 6: Kalayaan (Independence Heritage Blue & Coral Red) */
+  html[data-season="kalayaan"] {
+    --accent-primary: #2563eb;
+    --accent-secondary: #dc2626;
+    --accent-gold: #fbbf24;
+    --accent-border: #93c5fd;
+    --accent-glow: rgba(37, 99, 235, 0.2);
+  }
+
+  /* Month 7: Habagat (Ocean Teal & Mist) */
+  html[data-season="habagat"] {
+    --accent-primary: #0d9488;
+    --accent-secondary: #0284c7;
+    --accent-gold: #38bdf8;
+    --accent-border: #5eead4;
+    --accent-glow: rgba(13, 148, 136, 0.2);
+  }
+
+  /* Month 8: Buwan ng Wika (Golden Pearl & Terracotta) */
+  html[data-season="buwan-ng-wika"] {
+    --accent-primary: #b45309;
+    --accent-secondary: #ea580c;
+    --accent-gold: #f59e0b;
+    --accent-border: #fed7aa;
+    --accent-glow: rgba(180, 83, 9, 0.2);
+  }
+
+  /* Month 9: Paskong Pinoy Prelude (Early Parol Gold & Warm Pine) */
+  html[data-season="paskong-pinoy-prelude"] {
+    --accent-primary: #d97706;
+    --accent-secondary: #15803d;
+    --accent-gold: #fbbf24;
+    --accent-border: #fef08a;
+    --accent-glow: rgba(217, 119, 6, 0.25);
+  }
+
+  /* Month 10: Undas / Dusk (Amethyst Dusk & Amber Ember) */
+  html[data-season="undas-dusk"] {
+    --accent-primary: #9333ea;
+    --accent-secondary: #ea580c;
+    --accent-gold: #fbbf24;
+    --accent-border: #c084fc;
+    --accent-glow: rgba(147, 51, 234, 0.25);
+  }
+
+  /* Month 11: Paskong Pinoy Festive (November Parol Lights & Emerald Pine) */
+  html[data-season="paskong-pinoy-festive"] {
+    --accent-primary: #dc2626;
+    --accent-secondary: #16a34a;
+    --accent-gold: #f59e0b;
+    --accent-border: #f87171;
+    --accent-glow: rgba(220, 38, 38, 0.25);
+  }
+
+  /* Month 12: Noche Buena Grand (Yuletide Star Gold & Velvet Crimson) */
+  html[data-season="noche-buena-grand"] {
+    --accent-primary: #b91c1c;
+    --accent-secondary: #15803d;
+    --accent-gold: #f59e0b;
+    --accent-border: #fca5a5;
+    --accent-glow: rgba(185, 28, 28, 0.3);
+  }
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  min-height: 100vh;
+}
+
+/* Custom utility classes */
+.bg-surface {
+  background-color: var(--bg-surface);
+}
+
+.bg-surface-elevated {
+  background-color: var(--bg-surface-elevated);
+}
+
+.border-theme {
+  border-color: var(--border-color);
+}
+
+.border-theme-hover:hover {
+  border-color: var(--border-hover);
+}
+
+.text-primary-theme {
+  color: var(--text-primary);
+}
+
+.text-secondary-theme {
+  color: var(--text-secondary);
+}
+
+.text-muted-theme {
+  color: var(--text-muted);
+}
+
+.accent-text {
+  color: var(--accent-primary);
+}
+
+.accent-bg {
+  background-color: var(--accent-primary);
+}
+
+.accent-border {
+  border-color: var(--accent-primary);
+}
+
+.seasonal-glow {
+  box-shadow: 0 0 25px var(--accent-glow);
+}
+
+.seasonal-card-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.seasonal-card-hover:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 20px var(--accent-glow);
+  transform: translateY(-2px);
+}

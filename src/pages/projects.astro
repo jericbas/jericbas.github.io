@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectGrid from '../components/ProjectGrid';
+import { Code2, ArrowLeft, Terminal, Package, Cpu } from 'lucide-react';
+---
+
+<Layout
+  title="Open Source Projects & Rust Crates | Jeric Bas"
+  description="Explore my public npm packages, Rust systems utilities, and architectural prototypes."
+>
+  <div class="mb-8">
+    <a
+      href="/"
+      class="inline-flex items-center gap-1.5 text-xs text-secondary-theme hover:text-primary-theme transition-colors mb-4"
+    >
+      <ArrowLeft className="w-3.5 h-3.5" />
+      Back to Home
+    </a>
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-surface-elevated border border-theme flex items-center justify-center">
+        <Code2 className="w-4 h-4 accent-text" />
+      </div>
+      <div>
+        <h1 class="text-3xl font-extrabold text-primary-theme">Rust & npm Craft</h1>
+        <p class="text-sm text-secondary-theme mt-1">
+          Open-source developer tooling, system monitors, and libraries built for performance and reliability.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-12">
+    <ProjectGrid client:load filter="all" />
+  </div>
+
+  <!-- Engineering Philosophy Note -->
+  <div class="p-6 rounded-2xl border border-theme bg-surface-elevated text-xs text-secondary-theme leading-relaxed">
+    <h3 class="font-bold text-sm text-primary-theme mb-2 flex items-center gap-2">
+      <Terminal className="w-4 h-4 accent-text" />
+      My Open-Source Engineering Principles
+    </h3>
+    <p class="mb-2">
+      <strong>Zero Unnecessary Overhead:</strong> CLI utilities and plugins must start instantaneously. If a tool lags before processing input, developer trust diminishes.
+    </p>
+    <p class="mb-2">
+      <strong>Predictable Dependencies:</strong> Whether publishing to npm or crates.io, keeping the transitive dependency tree shallow prevents supply chain rot and ecosystem conflicts.
+    </p>
+    <p>
+      <strong>Building in the Open:</strong> Every tool here was born out of genuine friction encountered while building software.
+    </p>
+  </div>
+</Layout>

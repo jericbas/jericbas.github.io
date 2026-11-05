@@ -1,0 +1,78 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { BookOpen, Calendar, ArrowLeft } from 'lucide-react';
+
+const posts = await getCollection('blog', ({ data }) => {
+  return import.meta.env.PROD ? data.draft !== true : true;
+});
+
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout
+  title="Devlog & Journey Articles | Jeric Bas"
+  description="Technical deep dives, architectural milestones, and lessons from building Rust systems and npm packages."
+>
+  <div class="mb-8">
+    <a
+      href="/"
+      class="inline-flex items-center gap-1.5 text-xs text-secondary-theme hover:text-primary-theme transition-colors mb-4"
+    >
+      <ArrowLeft className="w-3.5 h-3.5" />
+      Back to Home
+    </a>
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg bg-surface-elevated border border-theme flex items-center justify-center">
+        <BookOpen className="w-4 h-4 accent-text" />
+      </div>
+      <div>
+        <h1 class="text-3xl font-extrabold text-primary-theme">Devlog & Notes</h1>
+        <p class="text-sm text-secondary-theme mt-1">
+          Reflections on software design, systems programming in Rust, and npm tooling.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="space-y-4">
+    {sortedPosts.map((post) => (
+      <article class="p-6 rounded-2xl border border-theme bg-surface seasonal-card-hover group">
+        <a href={`/blog/${post.id}`} class="block">
+          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
+            <h2 class="text-xl font-bold text-primary-theme group-hover:accent-text transition-colors">
+              {post.data.title}
+            </h2>
+            <div class="flex items-center gap-1.5 text-xs text-muted-theme font-mono shrink-0">
+              <Calendar className="w-3.5 h-3.5" />
+              {post.data.pubDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })}
+            </div>
+          </div>
+
+          <p class="text-sm text-secondary-theme mb-4 leading-relaxed">
+            {post.data.description}
+          </p>
+
+          <div class="flex flex-wrap items-center gap-2">
+            {post.data.tags.map((tag: string) => (
+              <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-md bg-surface-elevated text-secondary-theme">
+                #{tag}
+              </span>
+            ))}
+            {post.data.draft && (
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                Draft (Hidden from Production)
+              </span>
+            )}
+          </div>
+        </a>
+      </article>
+    ))}
+  </div>
+</Layout>

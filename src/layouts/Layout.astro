@@ -1,0 +1,77 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar';
+import SeasonalBanner from '../components/SeasonalBanner';
+import Footer from '../components/Footer';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Jeric Bas | Systems & Developer Tooling Engineer',
+  description = 'Personal devlog, living portfolio, and showcase of open-source Rust crates and npm packages by Jeric Bas.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-mode="dim" data-season="paskong-pinoy-festive">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Inline script to prevent theme flash on initial load -->
+    <script is:inline>
+      (function() {
+        try {
+          const savedMode = localStorage.getItem('jb-mode') || 'dim';
+          const savedSeason = localStorage.getItem('jb-season') || 'auto';
+          
+          document.documentElement.setAttribute('data-mode', savedMode);
+          
+          if (savedSeason !== 'auto') {
+            document.documentElement.setAttribute('data-season', savedSeason);
+          } else {
+            const currentMonth = new Date().getMonth() + 1;
+            const seasonMap = {
+              1: 'bagong-taon',
+              2: 'harana',
+              3: 'tag-araw',
+              4: 'horizon',
+              5: 'flores-de-mayo',
+              6: 'kalayaan',
+              7: 'habagat',
+              8: 'buwan-ng-wika',
+              9: 'paskong-pinoy-prelude',
+              10: 'undas-dusk',
+              11: 'paskong-pinoy-festive',
+              12: 'noche-buena-grand'
+            };
+            const defaultSeason = seasonMap[currentMonth] || 'paskong-pinoy-festive';
+            document.documentElement.setAttribute('data-season', defaultSeason);
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <SeasonalBanner client:load />
+    <Navbar client:load />
+
+    <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <slot />
+    </main>
+
+    <Footer client:load />
+  </body>
+</html>

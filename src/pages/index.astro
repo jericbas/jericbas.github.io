@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectGrid from '../components/ProjectGrid';
+import { getCollection } from 'astro:content';
+import { ArrowRight, BookOpen, Code2, Terminal, Sparkles, Calendar } from 'lucide-react';
+
+// Fetch public, non-draft blog posts sorted by date
+const allPosts = await getCollection('blog', ({ data }) => {
+  return import.meta.env.PROD ? data.draft !== true : true;
+});
+
+const recentPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <section class="py-6 sm:py-10 border-b border-theme/60">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-theme bg-surface-elevated text-xs font-mono text-secondary-theme mb-6">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span>Living Developer Journey & Portfolio</span>
+      <span class="text-muted-theme">•</span>
+      <span class="accent-text font-semibold">🇵🇭 Philippines</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-primary-theme leading-tight max-w-3xl">
+      Engineering at the seam of <span class="accent-text">Rust</span> systems and modern <span class="accent-text">TypeScript</span> tooling.
+    </h1>
+
+    <p class="text-base sm:text-lg text-secondary-theme mt-5 max-w-2xl leading-relaxed">
+      Hi, I'm <strong>Jeric Bas</strong>. I build open-source npm packages, fast CLI diagnostics, and reliable backend systems. This site is my live journal documenting architectural decisions, milestones, and lessons learned.
+    </p>
+
+    <!-- Call to Actions -->
+    <div class="flex flex-wrap items-center gap-3 mt-8">
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm text-white accent-bg hover:opacity-90 transition-opacity shadow-sm"
+      >
+        <BookOpen className="w-4 h-4" />
+        Read the Devlog
+        <ArrowRight className="w-4 h-4" />
+      </a>
+
+      <a
+        href="/projects"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm border border-theme bg-surface hover:bg-surface-elevated text-primary-theme transition-colors shadow-xs"
+      >
+        <Code2 className="w-4 h-4 text-secondary-theme" />
+        Explore Projects
+      </a>
+
+      <a
+        href="https://github.com/jericbas"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm text-secondary-theme hover:text-primary-theme transition-colors"
+      >
+        GitHub Profile ↗
+      </a>
+    </div>
+  </section>
+
+  <!-- Rust & npm Projects Showcase -->
+  <section class="py-12 border-b border-theme/60">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
+      <div>
+        <div class="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-theme mb-1">
+          <Terminal className="w-3.5 h-3.5 accent-text" />
+          Open Source Craft
+        </div>
+        <h2 class="text-2xl font-bold text-primary-theme">Featured Rust & npm Projects</h2>
+      </div>
+      <a
+        href="/projects"
+        class="text-xs font-medium accent-text hover:underline inline-flex items-center gap-1"
+      >
+        View all projects & crates →
+      </a>
+    </div>
+
+    <ProjectGrid client:load filter="featured" />
+  </section>
+
+  <!-- Latest Blog & Devlog Entries -->
+  <section class="py-12">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-3">
+      <div>
+        <div class="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-muted-theme mb-1">
+          <Sparkles className="w-3.5 h-3.5 accent-text" />
+          Recent Writing & Milestones
+        </div>
+        <h2 class="text-2xl font-bold text-primary-theme">Latest Devlog Posts</h2>
+      </div>
+      <a
+        href="/blog"
+        class="text-xs font-medium accent-text hover:underline inline-flex items-center gap-1"
+      >
+        View full archive ({allPosts.length} posts) →
+      </a>
+    </div>
+
+    <div class="space-y-4">
+      {recentPosts.map((post) => (
+        <a
+          href={`/blog/${post.id}`}
+          class="block p-5 rounded-2xl border border-theme bg-surface seasonal-card-hover group"
+        >
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+            <h3 class="text-lg font-bold text-primary-theme group-hover:accent-text transition-colors">
+              {post.data.title}
+            </h3>
+            <div class="flex items-center gap-1.5 text-xs text-muted-theme font-mono shrink-0">
+              <Calendar className="w-3.5 h-3.5" />
+              {post.data.pubDate.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+              })}
+            </div>
+          </div>
+
+          <p class="text-sm text-secondary-theme mb-3 leading-relaxed">
+            {post.data.description}
+          </p>
+
+          <div class="flex items-center gap-2">
+            {post.data.tags.map((tag: string) => (
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-md bg-surface-elevated text-secondary-theme">
+                #{tag}
+              </span>
+            ))}
+            {post.data.draft && (
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                Draft (Preview)
+              </span>
+            )}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

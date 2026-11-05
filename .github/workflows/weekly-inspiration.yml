@@ -1,0 +1,30 @@
+name: Weekly Devlog Inspiration
+
+on:
+  schedule:
+    # Runs at 00:00 UTC every Monday (8:00 AM Philippine Standard Time)
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate Inspiration Digest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: 'jericbas'
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: node scripts/weekly-digest.mjs
