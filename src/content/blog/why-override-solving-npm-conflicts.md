@@ -3,7 +3,7 @@ title: "Solving Dependency Hell: The Origins of why-override"
 description: "A deep dive into why npm overrides happen and how a CLI diagnostic tool helps demystify transitive dependency locks."
 pubDate: 2026-10-14
 tags: ["npm", "cli", "node", "architecture"]
-draft: false
+draft: true
 featured: false
 author: "Jeric Bas"
 ---

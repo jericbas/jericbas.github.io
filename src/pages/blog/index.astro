@@ -38,41 +38,53 @@ const sortedPosts = posts.sort(
   </div>
 
   <div class="space-y-4">
-    {sortedPosts.map((post) => (
-      <article class="p-6 rounded-2xl border border-theme bg-surface seasonal-card-hover group">
-        <a href={`/blog/${post.id}`} class="block">
-          <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
-            <h2 class="text-xl font-bold text-primary-theme group-hover:accent-text transition-colors">
-              {post.data.title}
-            </h2>
-            <div class="flex items-center gap-1.5 text-xs text-muted-theme font-mono shrink-0">
-              <Calendar className="w-3.5 h-3.5" />
-              {post.data.pubDate.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-              })}
+    {sortedPosts.length === 0 ? (
+      <div class="p-8 rounded-2xl border border-theme bg-surface text-center">
+        <div class="text-2xl mb-2">✍️</div>
+        <h3 class="text-base font-bold text-primary-theme mb-1">
+          Articles are Currently in Progress
+        </h3>
+        <p class="text-xs text-muted-theme max-w-md mx-auto">
+          Technical devlogs, architectural deep dives, and systems notes are currently being written. Check back soon!
+        </p>
+      </div>
+    ) : (
+      sortedPosts.map((post) => (
+        <article class="p-6 rounded-2xl border border-theme bg-surface seasonal-card-hover group">
+          <a href={`/blog/${post.id}`} class="block">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
+              <h2 class="text-xl font-bold text-primary-theme group-hover:accent-text transition-colors">
+                {post.data.title}
+              </h2>
+              <div class="flex items-center gap-1.5 text-xs text-muted-theme font-mono shrink-0">
+                <Calendar className="w-3.5 h-3.5" />
+                {post.data.pubDate.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </div>
             </div>
-          </div>
 
-          <p class="text-sm text-secondary-theme mb-4 leading-relaxed">
-            {post.data.description}
-          </p>
+            <p class="text-sm text-secondary-theme mb-4 leading-relaxed">
+              {post.data.description}
+            </p>
 
-          <div class="flex flex-wrap items-center gap-2">
-            {post.data.tags.map((tag: string) => (
-              <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-md bg-surface-elevated text-secondary-theme">
-                #{tag}
-              </span>
-            ))}
-            {post.data.draft && (
-              <span class="text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">
-                Draft (Hidden from Production)
-              </span>
-            )}
-          </div>
-        </a>
-      </article>
-    ))}
+            <div class="flex flex-wrap items-center gap-2">
+              {post.data.tags.map((tag: string) => (
+                <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-md bg-surface-elevated text-secondary-theme">
+                  #{tag}
+                </span>
+              ))}
+              {post.data.draft && (
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-md bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                  Draft (Hidden from Production)
+                </span>
+              )}
+            </div>
+          </a>
+        </article>
+      ))
+    )}
   </div>
 </Layout>

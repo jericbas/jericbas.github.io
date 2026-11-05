@@ -58,16 +58,21 @@ async function run() {
   latestPosts.forEach((p) => console.log(` - ${p.title} (${p.slug})`));
 
   // Build clean, non-crowded markdown snippet
-  const listItems = latestPosts
-    .map((p) => {
-      const formattedDate = p.pubDate.toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-      });
-      return `- [**${p.title}**](https://jericbas.github.io/blog/${p.slug}) - *${formattedDate}*`;
-    })
-    .join('\n');
+  let listItems = '';
+  if (latestPosts.length === 0) {
+    listItems = '*Articles and devlogs are currently being drafted. Check back soon!*';
+  } else {
+    listItems = latestPosts
+      .map((p) => {
+        const formattedDate = p.pubDate.toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        });
+        return `- [**${p.title}**](https://jericbas.github.io/blog/${p.slug}) - *${formattedDate}*`;
+      })
+      .join('\n');
+  }
 
   const generatedSection = `<!-- BLOG-POSTS:START -->
 ### 📝 Latest Journey & Devlog Posts

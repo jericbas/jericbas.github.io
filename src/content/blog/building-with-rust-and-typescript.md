@@ -3,7 +3,7 @@ title: "Building at the Seam: Why I Write Developer Tooling in Rust and TypeScri
 description: "How combining Rust's memory safety and raw speed with TypeScript's ergonomic ecosystem shapes my open-source architecture."
 pubDate: 2026-11-01
 tags: ["rust", "typescript", "architecture", "devlog"]
-draft: false
+draft: true
 featured: true
 author: "Jeric Bas"
 ---
