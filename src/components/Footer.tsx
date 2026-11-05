@@ -45,7 +45,7 @@ export default function Footer() {
             <span>Built with Astro & React</span>
             <span>•</span>
             <span className="flex items-center gap-1">
-              Crafted in the Philippines 🇵🇭
+              Crafted with ☕ &amp; ⚡
             </span>
           </div>
         </div>

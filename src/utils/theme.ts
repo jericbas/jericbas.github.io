@@ -54,9 +54,9 @@ export const SEASONS: SeasonInfo[] = [
     id: 'kalayaan',
     name: 'Araw ng Kalayaan',
     month: 6,
-    subtitle: 'Independence Heritage',
-    emoji: '🇵🇭',
-    description: 'Philippine heritage blue, coral red, and sunburst gold.',
+    subtitle: 'Independence & Freedom',
+    emoji: '🕊️',
+    description: 'Heritage indigo, coral red, and sunburst gold.',
   },
   {
     id: 'habagat',

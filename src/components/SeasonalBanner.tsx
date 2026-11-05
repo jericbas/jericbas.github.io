@@ -37,7 +37,7 @@ export default function SeasonalBanner() {
       <span className="sm:hidden text-muted-theme">{season.subtitle}</span>
       <span className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full border border-theme bg-surface text-secondary-theme">
         <Sparkles className="w-2.5 h-2.5 accent-text" />
-        PH Season
+        Seasonal ✨
       </span>
     </div>
   );

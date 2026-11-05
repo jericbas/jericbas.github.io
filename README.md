@@ -1,4 +1,4 @@
-# jericbas.github.io 🇵🇭
+# jericbas.github.io 🚀
 
 > **Living Developer Journal, Portfolio & Systems Showcase**  
 > Built with **Astro 5+**, **React 19**, and **Tailwind CSS 4**.  
