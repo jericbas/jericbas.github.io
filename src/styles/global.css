@@ -138,20 +138,20 @@
 
   /* Month 11: Paskong Pinoy Festive (November Parol Lights & Emerald Pine) */
   html[data-season="paskong-pinoy-festive"] {
-    --accent-primary: #dc2626;
-    --accent-secondary: #16a34a;
-    --accent-gold: #f59e0b;
-    --accent-border: #f87171;
-    --accent-glow: rgba(220, 38, 38, 0.25);
+    --accent-primary: #dc2626;      /* Poinsettia Festive Red */
+    --accent-secondary: #16a34a;    /* Emerald Pine Green */
+    --accent-gold: #eab308;         /* Parol Star Radiant Yellow */
+    --accent-border: #fca5a5;
+    --accent-glow: rgba(234, 179, 8, 0.28);
   }
 
   /* Month 12: Noche Buena Grand (Yuletide Star Gold & Velvet Crimson) */
   html[data-season="noche-buena-grand"] {
-    --accent-primary: #b91c1c;
-    --accent-secondary: #15803d;
-    --accent-gold: #f59e0b;
+    --accent-primary: #b91c1c;      /* Velvet Noche Buena Red */
+    --accent-secondary: #15803d;    /* Deep Cedar Pine Green */
+    --accent-gold: #facc15;         /* Star Lantern Warm Gold/Yellow */
     --accent-border: #fca5a5;
-    --accent-glow: rgba(185, 28, 28, 0.3);
+    --accent-glow: rgba(220, 38, 38, 0.3);
   }
 }
 
@@ -216,4 +216,38 @@ body {
   border-color: var(--accent-primary);
   box-shadow: 0 4px 20px var(--accent-glow);
   transform: translateY(-2px);
+}
+
+/* Philippine Christmas Red, Green & Yellow/Gold Utilities */
+.text-parol-red {
+  color: #dc2626;
+}
+
+.text-parol-green {
+  color: #16a34a;
+}
+
+.text-parol-yellow {
+  color: #eab308;
+}
+
+.bg-parol-red {
+  background-color: #dc2626;
+}
+
+.bg-parol-green {
+  background-color: #16a34a;
+}
+
+.bg-parol-yellow {
+  background-color: #eab308;
+}
+
+.parol-festive-border {
+  border-image: linear-gradient(to right, #dc2626, #eab308, #16a34a) 1;
+}
+
+.parol-gradient-badge {
+  background: linear-gradient(135deg, rgba(220, 38, 38, 0.15) 0%, rgba(234, 179, 8, 0.15) 50%, rgba(22, 163, 74, 0.15) 100%);
+  border: 1px solid rgba(234, 179, 8, 0.35);
 }

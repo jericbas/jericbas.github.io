@@ -94,17 +94,17 @@ export const SEASONS: SeasonInfo[] = [
     id: 'paskong-pinoy-festive',
     name: 'Paskong Pinoy Festive',
     month: 11,
-    subtitle: 'Parol Lights & Simbang Gabi',
+    subtitle: 'Parol Star Lights & Simbang Gabi',
     emoji: '🌟',
-    description: 'Glowing star lanterns, emerald pine, and festive red.',
+    description: 'Glowing parol star yellow, holiday red, and emerald pine green.',
   },
   {
     id: 'noche-buena-grand',
     name: 'Noche Buena Grand',
     month: 12,
-    subtitle: 'Christmas Joy & Pista',
+    subtitle: 'Noche Buena & Pista',
     emoji: '🎄',
-    description: 'Rich velvet crimson, yuletide gold, and celebration pine.',
+    description: 'Star gold yellow, velvet crimson red, and celebration pine green.',
   },
 ];
 
