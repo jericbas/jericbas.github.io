@@ -22,7 +22,23 @@ export default function Footer() {
 
         {/* Links & Philippine Seasonal Note */}
         <div className="flex flex-col items-center md:items-end gap-2 text-xs text-secondary-theme">
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="https://crates.io/users/jericbas"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary-theme flex items-center gap-1 transition-colors text-orange-500 font-mono text-[11px]"
+            >
+              crates.io ↗
+            </a>
+            <a
+              href="https://www.npmjs.com/~jericbas?activeTab=packages"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary-theme flex items-center gap-1 transition-colors text-red-500 font-mono text-[11px]"
+            >
+              npm ↗
+            </a>
             <a
               href="https://github.com/jericbas"
               target="_blank"
@@ -37,7 +53,7 @@ export default function Footer() {
               className="hover:text-primary-theme flex items-center gap-1 transition-colors"
             >
               <Rss className="w-3.5 h-3.5 text-amber-500" />
-              RSS Feed
+              RSS
             </a>
           </div>
 
