@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/Navbar';
-import SeasonalBanner from '../components/SeasonalBanner';
 import Footer from '../components/Footer';
 
 interface Props {
@@ -65,7 +64,6 @@ const {
     </script>
   </head>
   <body class="flex flex-col min-h-screen">
-    <SeasonalBanner client:load />
     <Navbar client:load />
 
     <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
