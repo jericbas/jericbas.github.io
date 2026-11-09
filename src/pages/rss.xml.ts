@@ -2,7 +2,9 @@ import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 
 export const GET: APIRoute = async (context) => {
-  const posts = await getCollection('blog', ({ data }) => data.draft !== true);
+  const posts = await getCollection('blog', ({ data }) => {
+    return import.meta.env.PROD ? !data.draft && data.pubDate <= new Date() : !data.draft;
+  });
   const sorted = posts.sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
