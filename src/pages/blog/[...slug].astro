@@ -5,7 +5,7 @@ import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => {
-    return import.meta.env.PROD ? data.draft !== true : true;
+    return import.meta.env.PROD ? data.draft !== true && data.pubDate <= new Date() : true;
   });
   return posts.map((post) => ({
     params: { slug: post.id },

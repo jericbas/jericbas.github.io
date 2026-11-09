@@ -5,7 +5,7 @@ import { Cpu, Package, BookOpen, Calendar, ArrowRight } from 'lucide-react';
 import GithubIcon from '../components/icons/GithubIcon';
 
 const posts = await getCollection('blog', ({ data }) => {
-  return import.meta.env.PROD ? data.draft !== true : true;
+  return import.meta.env.PROD ? data.draft !== true && data.pubDate <= new Date() : true;
 });
 
 const sortedPosts = posts.sort(
