@@ -1,5 +1,5 @@
 ---
-title: "One Flag to Lock Down Your AI Agents: Adding Safe Agents to OmniRoute via Docker Compose Profiles"
+title: "feat(docker): One Flag to Lock Down AI Agents via OmniRoute Compose Profiles"
 description: "How to chain Safe Agents firewall proxy with OmniRoute using Docker Compose profiles for zero-clutter, defense-in-depth agent security."
 pubDate: 2026-11-17
 tags: ["ai", "docker", "security", "omniroute", "tooling"]
